@@ -9,12 +9,12 @@ public class AddressBookMain {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        final int EXIT = 5;
+        final int EXIT = 6;
 
         int choice = 0;
         while (choice != EXIT) {
 
-            System.out.println("1 : Add Contact\n2 : Edit Contact\n3 : Display Contact\n4: Delete Contact\n" + EXIT + " to exit");
+            System.out.println("1 : Add Contact\n2 : Edit Contact\n3 : Display Contact\n4: Delete Contact\n5: Add Multiple Contact\n" + EXIT + " to exit");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -32,11 +32,22 @@ public class AddressBookMain {
                 case 4:
                     deleteContact();
                     break;
+                case 5:
+                    addMultipleContact();
+                    break;
 
             }
 
         }
 
+    }
+
+    private static void addMultipleContact() {
+        System.out.println("enter number of contacts to add ");
+        int number = sc.nextInt();
+        for (int i = 0; i < number; i++) {
+            addContact();
+        }
     }
 
     private static void deleteContact() {
