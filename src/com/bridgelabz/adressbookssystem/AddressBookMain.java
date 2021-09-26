@@ -6,17 +6,16 @@ import java.util.Scanner;
 
 public class AddressBookMain {
     static List<Contact> list = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        final int EXIT = 4;
+        final int EXIT = 5;
 
         int choice = 0;
         while (choice != EXIT) {
 
-            System.out.println("1 : Add Contact\n2 : Edit Contact\n3 : Display Contact\n" + EXIT + " to exit");
-            Scanner r = new Scanner(System.in);
-            Scanner sc = new Scanner(System.in);
-            choice = r.nextInt();
+            System.out.println("1 : Add Contact\n2 : Edit Contact\n3 : Display Contact\n4: Delete Contact\n" + EXIT + " to exit");
+            choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
@@ -30,11 +29,26 @@ public class AddressBookMain {
                 case 3:
                     displayContact();
                     break;
+                case 4:
+                    deleteContact();
+                    break;
 
             }
 
         }
 
+    }
+
+    private static void deleteContact() {
+        System.out.println("enter the first name");
+        String firstName = sc.next();
+        Contact person = getPerson(firstName);
+        if (person == null) {
+            System.out.println("No contact found of that name");
+        } else {
+            list.remove(person);
+            System.out.println(firstName + " Delete from AddressBook");
+        }
     }
 
     private static void addContact() {
@@ -62,8 +76,12 @@ public class AddressBookMain {
     }
 
     private static void displayContact() {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
+        if (list.size() != 0) {
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i));
+            }
+        } else {
+            System.out.println("Contact book is empty\n");
         }
 
     }
