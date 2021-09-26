@@ -57,6 +57,30 @@ public class AddressBook {
     }
 
     /*
+     * method to search contact based city or state
+     */
+    public void searchContact(String place) {
+        Set<Map.Entry<String, Contact>> entries = addressBook.entrySet();
+        Stream<Map.Entry<String, Contact>> entriesStream = entries.stream();
+
+        Set<String> keySet = addressBook.keySet();
+        Collection<Contact> values = addressBook.values();
+
+        Stream<Contact> valuesStream = values.stream();
+        Stream<String> keysStream = keySet.stream();
+
+        valuesStream.anyMatch((x) -> {
+            if (x.city.equals(place) || x.state.equals(place)) {
+                System.out.println(x);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+    }
+
+    /*
      * method to edit contact in addressBook
      */
     public static void editPerson() {
