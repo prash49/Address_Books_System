@@ -48,6 +48,7 @@ public class AddressBookMain {
     /*
      * method to search contact based on city or state
      */
+
     private static void searchContact() {
         System.out.println("Enter the city or state name");
         String place = sc.nextLine();
@@ -55,7 +56,6 @@ public class AddressBookMain {
             AddressBook obj = entry.getValue();
             obj.searchContact(place);
         }
-
     }
 
     /*
