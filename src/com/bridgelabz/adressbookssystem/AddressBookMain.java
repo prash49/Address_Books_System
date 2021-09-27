@@ -8,12 +8,12 @@ public class AddressBookMain {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        final int EXIT = 7;
+        final int EXIT = 8;
 
         int choice = 0;
         while (choice != EXIT) {
             System.out.println(
-                    "1 : Add AddressBook\n2 : Add Contact\n3 : Edit Contact\n4 : Delete Contact\n5 : Display Contact\n6 :search"
+                    "1 : Add AddressBook\n2 : Add Contact\n3 : Edit Contact\n4 : Delete Contact\n5 : Display Contact\n6 : search\n7 : Sort\n"
                             + EXIT + " : to exit");
             Scanner sc = new Scanner(System.in);
             choice = sc.nextInt();
@@ -39,11 +39,24 @@ public class AddressBookMain {
                 case 6:
                     searchContact();
                     break;
+                case 7:
+                    sort();
+                    break;
 
             }
 
         }
 
+    }
+
+    /*
+     * method to sort contact based on names
+     */
+    private static void sort() {
+        for (Map.Entry<String, AddressBook> entry : addressBook.entrySet()) {
+            AddressBook obj = entry.getValue();
+            obj.sort();
+        }
     }
 
     /*
@@ -53,12 +66,12 @@ public class AddressBookMain {
     private static void searchContact() {
         System.out.println("Enter the city or state name");
         String place = sc.nextLine();
-        int count=0;
+        int count = 0;
         for (Map.Entry<String, AddressBook> entry : addressBook.entrySet()) {
             AddressBook obj = entry.getValue();
-            count+=obj.searchContact(place);
+            count += obj.searchContact(place);
         }
-        System.out.println(count+" contact found based on"+place);
+        System.out.println(count + " contact found based on" + place);
     }
 
     /*

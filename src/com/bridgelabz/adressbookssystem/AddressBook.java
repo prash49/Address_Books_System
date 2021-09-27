@@ -2,6 +2,7 @@ package com.bridgelabz.adressbookssystem;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AddressBook {
@@ -163,6 +164,22 @@ public class AddressBook {
 
         }
 
+    }
+
+    /*
+     * method to sort contact based on names
+     */
+    public void sort() {
+
+        Map<String, Contact> sortedContact = addressBook.entrySet().stream().sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+                        LinkedHashMap::new));
+
+        for (Map.Entry<String, Contact> entry : sortedContact.entrySet()) {
+
+            System.out.println(entry.getValue());
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
     }
 
     @Override
