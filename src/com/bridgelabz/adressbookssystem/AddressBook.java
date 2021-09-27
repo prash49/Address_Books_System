@@ -97,13 +97,9 @@ public class AddressBook {
     public void editPerson() {
 
         System.out.println("enter the first name");
-        String fname = sc.nextLine();
-        System.out.println("enter the last name");
-        String lname = sc.nextLine();
+        String firstName = sc.nextLine();
 
-        String name = fname + " " + lname;
-
-        Contact c = addressBook.get(name);
+        Contact c = addressBook.get(firstName);
         if (c == null) {
             System.out.println("Person of that name not exits in this book");
         } else {
@@ -118,7 +114,7 @@ public class AddressBook {
                 switch (choice) {
                     case 1:
                         System.out.println("enter the first name");
-                        String firstName = sc.nextLine();
+                        String editfirstName = sc.nextLine();
                         // person.firstName = firstName;
                         c.firstName = firstName;
                         break;
@@ -179,7 +175,7 @@ public class AddressBook {
 
             System.out.println(entry.getValue());
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+
     }
 
     @Override
@@ -202,23 +198,70 @@ public class AddressBook {
     /*
      * method to delete person from addressBook
      */
-    public void deleteperson() {
+    public void deletePerson() {
 
         System.out.println("enter the first name");
-        String fname = sc.nextLine();
-        System.out.println("enter the last name");
-        String lname = sc.nextLine();
+        String firstName = sc.nextLine();
 
-        String name = fname + " " + lname;
 
-        Contact c = addressBook.get(name);
+        Contact c = addressBook.get(firstName);
         if (c == null) {
             System.out.println("Person of that name not exits in this book");
 
         } else {
-            addressBook.remove(name);
+            addressBook.remove(firstName);
         }
 
+    }
+
+    /*
+     * Method to sort contacts based on state
+     */
+    public void sortZip() {
+        Set<Map.Entry<String, Contact>> entries = addressBook.entrySet();
+        Stream<Map.Entry<String, Contact>> entriesStream = entries.stream();
+
+        Set<String> keySet = addressBook.keySet();
+        Collection<Contact> values = addressBook.values();
+
+        Stream<Contact> valuesStream = values.stream();
+        Stream<String> keysStream = keySet.stream();
+
+        valuesStream.sorted((p1, p2) -> p1.zip.compareTo(p2.zip)).forEach(System.out::println);
+
+    }
+
+    /**
+     * Method to sort contacts based on state
+     */
+    public void sortCity() {
+        Set<Map.Entry<String, Contact>> entries = addressBook.entrySet();
+        Stream<Map.Entry<String, Contact>> entriesStream = entries.stream();
+
+        Set<String> keySet = addressBook.keySet();
+        Collection<Contact> values = addressBook.values();
+
+        Stream<Contact> valuesStream = values.stream();
+        Stream<String> keysStream = keySet.stream();
+
+        valuesStream.sorted((p1, p2) -> p1.city.compareTo(p2.city)).forEach(System.out::println);
+
+    }
+
+    /**
+     * Method to sort contacts based on state
+     */
+    public void sortState() {
+        Set<Map.Entry<String, Contact>> entries = addressBook.entrySet();
+        Stream<Map.Entry<String, Contact>> entriesStream = entries.stream();
+
+        Set<String> keySet = addressBook.keySet();
+        Collection<Contact> values = addressBook.values();
+
+        Stream<Contact> valuesStream = values.stream();
+        Stream<String> keysStream = keySet.stream();
+
+        valuesStream.sorted((p1, p2) -> p1.state.compareTo(p2.state)).forEach(System.out::println);
     }
 
     /*
